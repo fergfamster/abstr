@@ -37,14 +37,14 @@ class MyProjectStack(Stack):
         lambdaEnv[sc.COMPREHEND_EP_ARN] = comprehend_ep_arn
         
         # create s3 input bucket
-        s3InputBucket = _s3.Bucket(self, "s3InputBucket")
-        self, "s3InputBucket", auto_delete_objects=True,
-        removal_policy=RemovalPolicy.DESTROY)
+        s3InputBucket = _s3.Bucket(
+            self, "s3InputBucket", auto_delete_objects=True,
+            removal_policy=RemovalPolicy.DESTROY)
         
         # create s3 output bucket
-        s3OutputBucket = _s3.Bucket(self, "s3OutputBucket")
-        self, "s3OutputBucket", auto_delete_objects=True,
-        removal_policy=RemovalPolicy.DESTROY)
+        s3OutputBucket = _s3.Bucket(
+            self, "s3OutputBucket", auto_delete_objects=True,
+            removal_policy=RemovalPolicy.DESTROY)
 
         lambdaEnv[sc.INPUT_BKT] = s3InputBucket.bucket_name
         lambdaEnv[sc.OUTPUT_BKT] = s3OutputBucket.bucket_name
